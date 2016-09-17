@@ -25,6 +25,20 @@ def rec_ord_dict(recdict):
             newdict[k] = v
     return newdict
 
+def rec_ddict(recdict):
+    """Recursive defaultdict awesomeness!
+
+    Args:
+        recdict(dict): A dictionary to recursively sort.
+    """
+    newdict = defaultdict(lambda: defaultdict(dict), recdict)
+    for k, v in sorted(recdict.items()):
+        if isinstance(v, dict):
+            newdict[k] = rec_ddict(v)
+        else:
+            newdict[k] = v
+    return newdict
+
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('pos', nargs='?')
@@ -55,8 +69,7 @@ if __name__ == '__main__':
     hours_dict = json.loads(json_text)
 
     # Create a new defaultdict and update it with the pre-existing hours
-    new_hours = defaultdict(lambda: defaultdict(dict))
-    new_hours.update(hours_dict)
+    new_hours = rec_ddict(hours_dict)
 
     if args.pos == 'single':
         try:
