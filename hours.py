@@ -31,7 +31,7 @@ def rec_ddict(recdict):
     Args:
         recdict(dict): A dictionary to recursively sort.
     """
-    newdict = defaultdict(lambda: defaultdict(dict), recdict)
+    newdict = defaultdict(lambda: defaultdict(dict))
     for k, v in sorted(recdict.items()):
         if isinstance(v, dict):
             newdict[k] = rec_ddict(v)
