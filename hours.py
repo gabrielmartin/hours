@@ -90,7 +90,7 @@ if __name__ == '__main__':
                 print('  %s:  %.1f hours' % (date_str, data['h']))
                 print('    Report: %s' % data['r'])
         print()
-    else:
+    elif args.pos == 'week':
         try:
             date = datetime.datetime.strptime(date_str, '%Y/%m/%d').date()
         except Exception:
