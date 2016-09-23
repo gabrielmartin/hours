@@ -107,6 +107,7 @@ if __name__ == '__main__':
             new_hours[company][date.strftime('%b %d, %Y')]['r'] = report
             date = date + datetime.timedelta(days=1)
 
+    # Save the data back to the file...
     if args.pos != 'view':
         logging.info('Saving the hours data back to the json file...')
         json_file = open(file_name, 'w')
